@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山羊の前端小窝</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .shell {
+            width: 100%;
+            position: relative;
+            padding: 80px 0;
+            transition: 0.3s ease 0s;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        .shell:before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(99, 99, 99, 0.8);
+            content: "";
+        }
+
+        .header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .title {
+            color: #fff;
+            font-size: 80px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .timeline {
+            display: flex;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            flex-direction: column;
+            max-width: 700px;
+            position: relative;
+        }
+
+        .content-title {
+            font-weight: normal;
+            font-size: 66px;
+            margin: -10px 0 0 0;
+            transition: 0.4s;
+            padding: 0 10px;
+            box-sizing: border-box;
+            color: #f6f8f8;
+        }
+
+        .content-desc {
+            margin: 0;
+            font-size: 18px;
+            box-sizing: border-box;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 25px;
+        }
+
+        .timeline:before {
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            margin-left: -1px;
+            content: "";
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .item {
+            padding: 40px 0;
+            opacity: 0.3;
+            filter: blur(2px);
+            transition: 0.5s;
+            box-sizing: border-box;
+            width: calc(50% - 40px);
+            display: flex;
+            position: relative;
+            transform: translateY(-80px);
+        }
+
+        .item:before {
+            content: attr(data-text);
+            letter-spacing: 3px;
+            width: 100%;
+            position: absolute;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            border-left: 2px solid rgba(255, 255, 255, 0.5);
+            top: 70%;
+            margin-top: -5px;
+            padding-left: 15px;
+            opacity: 0;
+            right: calc(-100% - 56px);
+            font: 900 20px '';
+            letter-spacing: 5px;
+        }
+
+        .item:nth-child(even) {
+            align-self: flex-end;
+        }
+
+        .item:nth-child(even):before {
+            right: auto;
+            text-align: right;
+            left: calc(-100% - 56px);
+            padding-left: 0;
+            border-left: none;
+            border-right: 2px solid rgba(255, 255, 255, 0.5);
+            padding-right: 15px;
+        }
+
+        .item--active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0px);
+        }
+
+        .item--active:before {
+            top: 50%;
+            transition: 0.3s all 0.2s;
+            opacity: 1;
+        }
+
+        .item--active .content-title {
+            margin: -50px 0 20px 0;
+        }
+
+        .img {
+            max-width: 100%;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 16px;
+            letter-spacing: 5px;
+            margin: 10px 0 0 0;
+            font-weight: normal;
+        }
+
+        .footer {
+            padding: 95px 0;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #999;
+            display: inline-block;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .item {
+                align-self: baseline !important;
+                width: 100%;
+                padding: 0 30px 150px 80px;
+            }
+
+            .item:before {
+                left: 10px !important;
+                padding: 0 !important;
+                top: 50px;
+                text-align: center !important;
+                width: 60px;
+                border: none !important;
+            }
+
+            .item:last-child {
+                padding-bottom: 40px;
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+            .timeline:before {
+                left: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell" id="shell">
+        <div class="header">
+            <h2 class="title">会五の团建总结</h2>
+            <h3 class="subtitle">2024</h3>
+        </div>
+        <div class="timeline">
+            <div class="item" data-text="《中秋团建》">
+                <div class="content">
+                    <img src="./img/v1.jpg" alt="" class="img">
+                    <h2 class="content-title">9.17</h2>
+                    <h3 class="content-desc">中秋兔兔</h3>
+                    <p class="content-desc">
+                        天上月是圆月🎧身边人是830💞
+                        会五祝哥哥❤️中秋快乐❤️
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="《 直播800天团建》">
+                <div class="content">
+                    <img src="./img/v2.JPG" alt="" class="img">
+                    <h2 class="content-title">10.12</h2>
+                    <h3 class="content-desc">海上生明月、飞机、跑车、兔兔</h3>
+                    <p class="content-desc">
+                        海上月是天上月，下海人是眼前人。
+                        告诉小控，会5不是孬种！小蛋糕祝哥哥直播800天快乐
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="《情绪团建》">
+                <div class="content">
+                    <img src="./img/v3.jpg" alt="" class="img">
+                    <h2 class="content-title">10.22</h2>
+                    <h3 class="content-desc">单车恋人</h3>
+                    <p class="content-desc">
+                        在我心中你最美，宝宝想要那就给！
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="《被going团建》">
+                <div class="content">
+                    <img src="./img/v4.jpg" alt="" class="img">
+                    <h2 class="content-title">10.24</h2>
+                    <h3 class="content-desc">真的爱你</h3>
+                    <p class="content-desc">
+                        英雄不问出路，要爱就爱Going Kong！
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="《守护全世界最好的控》">
+                <div class="content">
+                    <img src="./img/v5.jpg" alt="" class="img">
+                    <h2 class="content-title">10.27</h2>
+                    <h3 class="content-desc">为你撑伞</h3>
+                    <p class="content-desc">
+                        先生我为你而来 ，守护全世界最好的控❤️
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="《🔔叮咚请查收你的一群可爱鬼》">
+                <div class="content">
+                    <img src="./img/v6.jpg" alt="" class="img">
+                    <h2 class="content-title">10.29</h2>
+                    <h3 class="content-desc">捣蛋南瓜马车</h3>
+                    <p class="content-desc">
+                        🔔叮咚！不给亲亲就捣蛋(˘³˘)♡——V5可爱鬼
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="《公主妹宝接生》">
+                <div class="content">
+                    <img src="./img/v7.jpg" alt="" class="img">
+                    <h2 class="content-title">11.1</h2>
+                    <h3 class="content-desc">掌上明珠、蚌你左右</h3>
+                    <p class="content-desc">
+                        妹one无two❤️你是我的掌上明珠🎈
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="《立冬》">
+                <div class="content">
+                    <img src="./img/v8.jpg" alt="" class="img">
+                    <h2 class="content-title">11.7</h2>
+                    <h3 class="content-desc">甜蜜蜜</h3>
+                    <p class="content-desc">
+                        与冬相见欢⛄️与你相见安 🧁哥哥立冬快乐🎉
+                        会五㊗️岔劈姐姐生日快乐🎂
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="《迎接小控200天》">
+                <div class="content">
+                    <img src="./img/v9.jpg" alt="" class="img">
+                    <h2 class="content-title">11.8</h2>
+                    <h3 class="content-desc">想你鸭</h3>
+                    <p class="content-desc">
+                        会 5 祝好大儿小控 200 天快乐！🎉麻麻爱你！🙆‍♀️💕
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="《群83天火花》">
+                <div class="content">
+                    <img src="./img/v10.jpg" alt="" class="img">
+                    <h2 class="content-title">11.9</h2>
+                    <h3 class="content-desc">万象烟花</h3>
+                    <p class="content-desc">
+                        祝会五83 天火花快乐！💒是在一起爱控的 83 天🎆💕
+                        ㊗️开水宝宝生日快乐🎂开心每一天🎉
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="《控直播830天 群团建》">
+                <div class="content">
+                    <img src="./img/v11.jpg" alt="" class="img">
+                    <h2 class="content-title">11.11</h2>
+                    <h3 class="content-desc">爱意花海、无尽浪漫</h3>
+                    <p class="content-desc">
+                        花海有你才浪漫❀会五约定下个830🧁
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+
+        (function ($) {
+            $.fn.timeline = function () {
+                var selectors = {
+                    id: $(this),
+                    item: $(this).find(".item"),
+                    activeClass: "item--active",
+                    img: ".img"
+                };
+                // 将第一个时间轴项目激活，并设置时间轴背景图片为第一个项目的图片
+                selectors.item.eq(0).addClass(selectors.activeClass);
+                selectors.id.css(
+                    "background-image",
+                    "url(" +
+                    selectors.item.first()
+                        .find(selectors.img)
+                        .attr("src") +
+                    ")"
+                );
+                // 获取时间轴项目的总数
+                var itemLength = selectors.item.length;
+                // 当页面滚动时，触发滚动事件
+                $(window).scroll(function () {
+                    var max, min;
+                    // 获取页面滚动的距离
+                    var pos = $(this).scrollTop();
+                    selectors.item.each(function (i) {
+                        // 获取当前时间轴项目的最小和最大高度
+                        min = $(this).offset().top;
+                        max = $(this).height() + $(this).offset().top;
+                        var that = $(this);
+                        // 如果滚动到最后一个项目，并且超过了当前项目高度的一半，
+                        // 则将最后一个项目设置为激活状态，并设置背景图片为最后一个项目的图片
+                        if (i == itemLength - 2 && pos > min + $(this).height() / 2) {
+                            selectors.item.removeClass(selectors.activeClass);
+                            selectors.id.css(
+                                "background-image",
+                                "url(" +
+                                selectors.item.last()
+                                    .find(selectors.img)
+                                    .attr("src") +
+                                ")"
+                            );
+                            selectors.item.last().addClass(selectors.activeClass);
+                        }
+                        // 如果当前滚动位置在当前项目的最小和最大高度之间，
+                        // 则将当前项目设置为激活状态，并设置背景图片为当前项目的图片
+                        else if (pos <= max - 10 && pos >= min) {
+                            selectors.id.css(
+                                "background-image",
+                                "url(" +
+                                $(this)
+                                    .find(selectors.img)
+                                    .attr("src") +
+                                ")"
+                            );
+                            selectors.item.removeClass(selectors.activeClass);
+                            $(this).addClass(selectors.activeClass);
+                        }
+                    });
+                });
+            };
+        })(jQuery)
+        /*
+        最后，我们调用 timeline 插件并传入时间轴的 ID 作为参数。
+        这将启用时间轴插件并为该时间轴绑定滚动事件。
+        */
+       $("#shell").timeline();
+
+
+    </script>
+</body>
+
+</html>
